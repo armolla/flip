@@ -15,7 +15,7 @@ body {
 }
 
 #panel {
- width: 320px;
+  width: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,10 +24,10 @@ body {
 
 .card {
   position: relative;
-  width: 55px;
-  height: 100px;
+  width: 60px;
+  height: 120px;
   border-radius: 5px;
-  margin: 3px;
+  margin: 2px;
 }
 
 .front, .back {
@@ -53,20 +53,44 @@ body {
   transform: perspective(500px) rotateY(180deg);
 }
 
-@media (min-width: 468px) {
+@media (min-width: 368px) {
   #panel {
     width: 450px;
   }
 
   .card {
-    width: 80px;
+    width: 75px;
     height: 150px;
+  }
+}
+
+@media (min-width: 468px) {
+  #panel {
+    width: 90%;
+    max-width: 500px;
+  }
+
+  .card {
+    width: 80px;
+    height: 180px;
+  }
+}
+
+@media (min-width: 568px) {
+  #panel {
+    width: 95%;
+    max-width: 600px;
+  }
+
+  .card {
+    width: 100px;
+    height: 200px;
   }
 }
 
 @media (min-width: 768px) {
   #panel {
-    width: 70%;
+    width: 95%;
     max-width: 600px;
   }
 
