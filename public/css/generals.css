@@ -1,0 +1,21 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: sans-serif;
+}
+
+:root {
+  --back: #000;
+  --light: #fff;
+  --sun: #fbfa08;
+  --presence: #cb6ce6;
+  --shadow: #242626;
+  --solid: #555;
+  --text: #f1f1f1;
+}
+
+body {
+  background-color: var(--text);
+}

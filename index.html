@@ -4,14 +4,51 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="./public/css/style.css">
-  <script src="./public/js/simpsons.js" defer></script>
-  <script src="./public/js/superheros.js" defer></script>
-  <script src="./public/js/functions.js" defer></script>
-  <script src="./public/js/script.js" defer></script>
   <title>Flip</title>
 </head>
 <body>
-  <div id="panel"></div>
+  <header class="nav">
+    <div class="logoFooter"><img class="headLogo" src="./public/images/FlipLogo.png" class="fontLogoFooter"></div>
+    <i class="fas fa-cog"></i>
+  </header>
+  <section class="mainContainer">
+    <h1 class="deckTitle">Escoja un mazo para empezar a jugar</h1>
+    <div class="deckContainer">
+      <div class="deckRow">
+        <div class="deck">
+          <img class="deckImage" src="./public/images/simpsons/simpsonsBack.jpg" alt="Imagen mazo los Simpsons">
+        </div>
+        <div class="deck">
+          <img class="deckImage" src="./public/images/simpsonsLego/legoBack.png" alt="Imagen mazo los Simpsons Lego">
+        </div>
+        <div class="deck">
+          <img class="deckImage" src="./public/images/dc/dcBack.jpg" alt="Imagen mazo DC super heroes">
+        </div>
+      </div>
+      <div class="deckRow">
+        <div class="deck">
+          <img class="deckImage" src="./public/images/marvel/marvelBack.jpg" alt="Imagen mazo Marvel super heroes">
+        </div>
+        <div class="deck">
+          <img class="deckImage" src="./public/images/futbol/futbolBack.jpg" alt="Imagen mazo futbolistas">
+        </div>
+        <div class="deck">
+          <img class="deckImage" src="./public/images/disney/disneyBack.png" alt="Imagen mazo Disney Mickey Mouse">
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="networksContainer" id="footer">
+    <div class="networks">
+      <div class="logoFooter"><a href="#home"><img src="./public/images/FlipLogo.png" class="logo"></a></div>
+      <div class="linksContainer">
+        <a class="linkNetwork" href="https://www.linkedin.com/in/ulisesarmolla/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a class="linkNetwork" href="https://github.com/armolla" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <span class="copy">© 2022 Ulises Armolla. All rights reserved.</span>
+  </footer>
 </body>
 </html>

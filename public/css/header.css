@@ -1,0 +1,21 @@
+header.nav {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--shadow);
+    border-bottom: 4px solid var(--presence);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+img.headLogo {
+    width: 80px;
+}
+
+i.fa-cog {
+    color: var(--text);
+    font-size: 24px;
+    color: var(--presence);
+}

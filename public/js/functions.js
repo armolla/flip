@@ -6,15 +6,14 @@ const clone = function (array, limit) {
 
 const panelCreate = function (array, callback, limit) {
   const newArray = callback(array, limit);
-  newArray.sort((a, b) => {return Math.random() - 0.5});
-  const back = "./public/images/back.png";
+  newArray.sort(() => {return Math.random() - 0.5});
   newArray.forEach((value) => {
     const div = document.createElement('div');
     div.classList.add('card');
     div.id = value.id;
     const firstImg = document.createElement('img');
     firstImg.classList.add('front');
-    firstImg.src = back;
+    firstImg.src = value.back;
     const secondImg = document.createElement('img');
     secondImg.classList.add('back');
     secondImg.src = value.img;

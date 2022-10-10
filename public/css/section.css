@@ -1,0 +1,44 @@
+section.mainContainer {
+  background-color: var(--text);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+h1.deckTitle {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--shadow);
+  margin: 20px 0px;
+}
+
+div.deckContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 0px;
+}
+
+div.deckRow {
+  display: flex;
+  justify-content: center;
+}
+
+div.deck {
+  width: 95px;
+  height: 190px;
+  border-radius: 5px;
+  margin: 4px;
+  background-color: var(--light);
+}
+
+img.deckImage {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
