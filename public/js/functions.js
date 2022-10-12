@@ -1,13 +1,30 @@
+const findDeck = function (id) {
+  switch (id) {
+    case 'simpsons':
+      return simpsons;
+    case 'simpsonsLego':
+      return simpsonsLego;  
+    case 'dc':
+      return dc;
+    case 'marvel':
+      return marvel;
+    case 'futbol':
+      return futbol;
+    case 'disney':
+      return disney;
+  }
+}
+
 const clone = function (array, limit) {
   const cloneOne = [...array].filter((value) => {return value.id < limit});
   const cloneTwo = [...array].filter((value) => {return value.id < limit});
   return cloneOne.concat(cloneTwo);
 }
 
-const panelCreate = function (array, callback, limit) {
+const deckGenerator = function (array, callback, limit) {
   const newArray = callback(array, limit);
   newArray.sort(() => {return Math.random() - 0.5});
-  newArray.forEach((value) => {
+  newArray.forEach((value, index) => {
     const div = document.createElement('div');
     div.classList.add('card');
     div.id = value.id;
@@ -19,14 +36,20 @@ const panelCreate = function (array, callback, limit) {
     secondImg.src = value.img;
     div.appendChild(firstImg);
     div.appendChild(secondImg);
-    panel.appendChild(div);
+    if (index < limit - 1) {
+      rows[0].appendChild(div);
+    } else {
+      rows[1].appendChild(div);
+    }
   });
 }
 
-const panelDelete = function (panel) {
-  while (panel.firstChild) {
-    panel.removeChild(panel.firstChild);
-  }
+const panelDelete = function (rows) {
+  rows.forEach((row) => {
+    while (row.firstChild) {
+      row.removeChild(row.firstChild);
+    }
+  });
 }
 
 const flip = function (boolean, object) {
@@ -40,8 +63,7 @@ const flip = function (boolean, object) {
 }
 
 const play = function (array, callback, limit) {
-  panel = document.querySelector('#panel');
-  panelCreate(array, callback, limit);
+  deckGenerator(array, callback, limit);
   cards = document.querySelectorAll('.card');
 
   cards.forEach((card) => {
@@ -80,7 +102,7 @@ const play = function (array, callback, limit) {
           });
         }, 2000);
         setTimeout(() => {
-          panelDelete(panel)
+          panelDelete(rows)
         }, 3000); 
         setTimeout(() => {
           play(array, callback, limit);
