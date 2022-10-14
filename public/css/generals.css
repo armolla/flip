@@ -8,11 +8,12 @@
 
 :root {
   --back: #000;
+  --error: #ff0000;
   --light: #fff;
-  --sun: #fbfa08;
   --presence: #cb6ce6;
   --shadow: #242626;
   --solid: #555;
+  --sun: #fbfa08;
   --text: #f1f1f1;
 }
 

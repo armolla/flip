@@ -62,6 +62,13 @@ const flip = function (boolean, object) {
   }
 }
 
+const boardGenerator = function () {
+  const board = document.querySelector('.board');
+  board.children[0].textContent = ' ' + move;
+  board.children[1].textContent = ' ' + score;
+  board.style.display = 'flex';
+}
+
 const play = function (array, callback, limit) {
   deckGenerator(array, callback, limit);
   cards = document.querySelectorAll('.card');
@@ -74,11 +81,17 @@ const play = function (array, callback, limit) {
         if (cardSelected.length == 2) {
           if (cardSelected[0].id == cardSelected[1].id) {
             coincidences ++;
+            move ++;
+            score +=10;
+            boardGenerator()
+            console.log('coincidencias ' + coincidences);
             cardSelected.pop();
             cardSelected.pop();
           } else {
-            errors ++;
-            if (errors == 4) {
+            move --;
+            boardGenerator();
+            console.log('movimientos ' + move);
+            if (move == 0) {
               game = false;
             }
             setTimeout(function(){
@@ -96,6 +109,7 @@ const play = function (array, callback, limit) {
       if (coincidences == limit - 1) {
         game = true;
         coincidences = 0;
+        limit ++;
         setTimeout(function() {
           cards.forEach((card) => {
             flip(false, card);
