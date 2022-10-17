@@ -18,7 +18,7 @@ h1.deckTitle {
 }
 
 div.board {
-  width: 80%;
+  width: 50%;
   height: 60px;
   display: none;
   align-items: center;

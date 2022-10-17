@@ -52,6 +52,13 @@ const panelDelete = function (rows) {
   });
 }
 
+const boardGenerator = function () {
+  const board = document.querySelector('.board');
+  board.children[0].textContent = ' ' + move;
+  board.children[1].textContent = ' ' + score;
+  board.style.display = 'flex';
+}
+
 const flip = function (boolean, object) {
   if (boolean) {
     object.firstElementChild.style.transform = 'perspective(500px) rotateY(180deg)';
@@ -62,11 +69,16 @@ const flip = function (boolean, object) {
   }
 }
 
-const boardGenerator = function () {
-  const board = document.querySelector('.board');
-  board.children[0].textContent = ' ' + move;
-  board.children[1].textContent = ' ' + score;
-  board.style.display = 'flex';
+const gameEnd = function () {
+  let div = document.querySelector('.end');
+  div.style.display = 'flex';
+  div.lastElementChild.addEventListener('click', ()=>{
+    div.style.display = 'none';
+    document.querySelector('.board').style.display = 'none';
+    panelDelete(rows);
+    document.querySelector('.deckTitle').style.display = 'block';
+    panelCreator();
+  });
 }
 
 const play = function (array, callback, limit) {
@@ -81,18 +93,20 @@ const play = function (array, callback, limit) {
         if (cardSelected.length == 2) {
           if (cardSelected[0].id == cardSelected[1].id) {
             coincidences ++;
-            move ++;
+            if (move < 5) {
+              move ++; 
+            }
             score +=10;
-            boardGenerator()
-            console.log('coincidencias ' + coincidences);
+            boardGenerator();
             cardSelected.pop();
             cardSelected.pop();
           } else {
             move --;
             boardGenerator();
-            console.log('movimientos ' + move);
             if (move == 0) {
-              game = false;
+              move = 3;
+              score = 0;
+              gameEnd();
             }
             setTimeout(function(){
               cardSelected.forEach((selected) => {
@@ -122,6 +136,42 @@ const play = function (array, callback, limit) {
           play(array, callback, limit);
         }, 3005);
       }
+    });
+  });
+}
+
+const panelCreator = function () {
+  let rows = document.querySelectorAll('.deckRow');
+  const decks = [simpsons, simpsonsLego, dc, marvel, futbol, disney];
+  const ids = ['simpsons', 'simpsonsLego', 'dc','marvel', 'futbol', 'disney'];
+  decks.forEach((deck, index) => {
+    deck.forEach((value, position) => {
+      if (position == 0) {
+        const div = document.createElement('div');
+        div.classList.add('deck');
+        const img = document.createElement('img');
+        img.classList.add('deckImage');
+        img.id = ids[index];
+        img.src = value.back;
+        img.alt = value.alt;
+        div.appendChild(img);
+        if (index <= 2) { 
+          rows[0].appendChild(div);
+        } else {
+          rows[1].appendChild(div);
+        }
+      }
+    });
+  });
+  
+  const decksChoise = document.querySelectorAll('.deckImage');
+  decksChoise.forEach((deck) => {
+    deck.addEventListener('click', ()=>{
+      let dekcSelected = deck.id;
+      document.querySelector('.deckTitle').style.display = 'none';
+      boardGenerator();
+      panelDelete(rows);
+      play(findDeck(dekcSelected), clone, limit);
     });
   });
 }
