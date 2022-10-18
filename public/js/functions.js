@@ -36,10 +36,28 @@ const deckGenerator = function (array, callback, limit) {
     secondImg.src = value.img;
     div.appendChild(firstImg);
     div.appendChild(secondImg);
-    if (index < limit - 1) {
-      rows[0].appendChild(div);
-    } else {
-      rows[1].appendChild(div);
+    if (newArray.length == 6) {
+      if (index < 3) {
+        rows[0].appendChild(div);
+      } else {
+        rows[1].appendChild(div);
+      }
+    } else if (newArray.length == 8) {
+      if (index <= 3) {
+        rows[0].appendChild(div);
+      } else {
+        rows[1].appendChild(div);
+      }
+    } else if (newArray.length >= 12) {
+      if (index <= 3) {
+        rows[0].appendChild(div);
+      } else if (index > 3 && index <= 7) {
+        rows[1].appendChild(div);
+      } else if (index > 7 && index <= 11) {
+        rows[2].appendChild(div);
+      } else if (index > 11 && index <= 15) {
+        rows[3].appendChild(div);
+      }
     }
   });
 }
@@ -69,8 +87,13 @@ const flip = function (boolean, object) {
   }
 }
 
-const gameEnd = function () {
+const gameEnd = function (boolean) {
   let div = document.querySelector('.end');
+  if (boolean) {
+    div.firstElementChild.src = './public/images/felicitaciones.png';
+  } else {
+    div.firstElementChild.src = './public/images/fin.png';
+  }
   div.style.display = 'flex';
   div.lastElementChild.addEventListener('click', ()=>{
     div.style.display = 'none';
@@ -93,7 +116,7 @@ const play = function (array, callback, limit) {
         if (cardSelected.length == 2) {
           if (cardSelected[0].id == cardSelected[1].id) {
             coincidences ++;
-            if (move < 5) {
+            if (move < 7) {
               move ++; 
             }
             score +=10;
@@ -106,7 +129,9 @@ const play = function (array, callback, limit) {
             if (move == 0) {
               move = 3;
               score = 0;
-              gameEnd();
+              setTimeout(() => {
+                gameEnd(false);
+              }, 2000);  
             }
             setTimeout(function(){
               cardSelected.forEach((selected) => {
@@ -121,9 +146,16 @@ const play = function (array, callback, limit) {
         }
       }
       if (coincidences == limit - 1) {
-        game = true;
         coincidences = 0;
-        limit ++;
+        if (limit < 5) {
+          limit ++;
+        } else if (limit == 5 || limit == 7) {
+          limit += 2;
+        } else {
+          setTimeout(() => {
+            gameEnd(true);
+          }, 3000); 
+        }
         setTimeout(function() {
           cards.forEach((card) => {
             flip(false, card);
